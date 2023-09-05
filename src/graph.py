@@ -6,6 +6,8 @@ Represent nodes with integers. If you want non-integers, translate it yourelf lo
 
 
 """
+RED = lambda s: f"\x1B[1;31m{s}\x1B[0m"
+GRN = lambda s: f"\x1B[1;32m{s}\x1B[0m"
 from dataclasses import dataclass
 def debug(*a,**kw):
   print(*a,**kw)
@@ -16,7 +18,7 @@ class Node:
     self.weight = weight
     self.visited = visited
   def __str__(self):
-    return f"{self.weight}{'T' if self.visited else 'F'}"
+    return f"{self.weight}{GRN('T') if self.visited else RED('F')}"
 
 
 class Graph:
@@ -26,6 +28,14 @@ class Graph:
     self.matrix: list = [[Node(0) for _ in range(node_count)] for _ in range(node_count)]
     self.weighted = weighted
     #^ create a 2-D grid of nodes and their possible connections.
+
+
+  def reset(self,*,visited=True,weight=True):
+    for nodelist in self.matrix:
+      for node in nodelist:
+        node.visited = not visited
+        node.weight  = int(not weight)
+    return self
 
 
   def connect(self,a: int, b: int, * , weight=1):
@@ -49,6 +59,19 @@ class Graph:
           self.depth_first(connection,callback)
     return self
 
+  def depth_first_2(self,start,callback):
+    for src, node_list in self._from_enumerate(start): # this will loop through each ROW starting at START, zipped with an index.
+      for dst, node_obj in enumerate(node_list):       # this will loop through each COLUMN, skipping anything that has already been visited OR is not a connection.
+        if node_obj.weight == 0:
+          continue
+        if node_obj.visited:
+          continue
+        else:
+          node_obj.visited = True
+          callback(src,dst)
+          self.depth_first_2(dst,callback)
+    return self
+
 
   def breadth_first(self,start,callback):
     ...
@@ -63,7 +86,7 @@ class Graph:
     for node in self.matrix:
       res += ' '.join(str(other) for other in node)
       res += '\n'
-    return res
+    return res[:-1]
 
 
   def _from(self,node):
@@ -76,12 +99,39 @@ class Graph:
     return zip(range(length),map(get_value,range(node,length)))
 
 
+def print_expected_path(list_of_connections):
+  print('->'.join(f"({c[0]},{c[1]})" for c in list_of_connections))
+
+def build_graph(my_graph,connections):
+  my_graph.reset()
+  [my_graph.connect(*e) for e in connections]
+  return my_graph
+
+def test_sequential(my_graph):
+  connections = [(0,0),(0,1),(1,0),(0,2),(0,3),(0,4)]
+  print_expected_path(connections)
+  build_graph(my_graph,connections)
+  callback = lambda s,d: print(my_graph,end="\n\n")
+  my_graph.depth_first_2(0,callback)
+
+def test_back_and_forth(my_graph):
+  connections = [(0,2),(2,0),(0,3),(3,0),(0,4),(4,1)]
+  print_expected_path(connections)
+  build_graph(my_graph,connections)
+  callback = lambda s,d: print(my_graph,end="\n\n")
+  my_graph.depth_first_2(0,callback)
+
+def test_no_connections(my_graph):
+  connections = [(0,0),(0,1),(0,2),(0,3),(4,0),(4,1)]
+  print_expected_path(connections)
+  build_graph(my_graph,connections)
+  callback = lambda s,d: print(my_graph,end="\n\n")
+  my_graph.depth_first_2(0,callback)
+
 def test():
   my_graph = Graph(5)
-  my_graph.connect(0,0).connect(0,1).connect(1,1).connect(2,2).connect(3,3).connect(4,4)
-  print(my_graph)
-  def callback(source,connection):
-    print(f"connection from {source} to {connection}")
-  my_graph.depth_first(0,callback)
+  test_sequential(my_graph)
+  test_back_and_forth(my_graph)
+  test_no_connections(my_graph)
 
 test()
