@@ -1,7 +1,15 @@
 # Utahtech Undergraduate Research Log File
+
 ## Ren Quinn, Thomas Keate, Jayson Bunnell
 
 
-### Sept 19 Goals
-- Figure out how to encode in the graph
--
+### 9/13
+
+- Figure out how to encode the results of the test
+- Figure out how to update the knowledge space graph
+
+### 9/12
+
+- Find a graph implementation that works for us
+- Write up a quiz in pokemon
+- Find a good, serialized output
