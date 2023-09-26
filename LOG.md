@@ -2,6 +2,10 @@
 
 ## Ren Quinn, Thomas Keate, Jayson Bunnell
 
+### 9/14
+
+- Learn how to read the graphs in the aleks paper (Figure 2)
+- Physically draw out a pokemon graph
 
 ### 9/13
 
