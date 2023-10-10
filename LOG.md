@@ -2,12 +2,20 @@
 
 ## Ren Quinn, Thomas Keate, Jayson Bunnell
 
-### 9/14
+### 10/10
+
+Solidify terms from aleks paper (see terms.md)
+
+### 10/3
+
+Ren is sick
+
+### 9/26
 
 - Learn how to read the graphs in the aleks paper (Figure 2)
 - Physically draw out a pokemon graph
 
-### 9/13
+### 9/19
 
 - Figure out how to encode the results of the test
 - Figure out how to update the knowledge space graph
