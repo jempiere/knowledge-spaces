@@ -9,3 +9,12 @@ A python implementation of knowledge spaces for Utah Tech Undergraduate Research
     - How do we store the knowledge space?
 - Should spelling accuracy impact score? If so, how much?
   - Is this unimportant due to a large question pool?
+
+
+
+
+## Prerequisites
+
+- Our graph visualizer depends on Graphviz, a graph-visualization software.
+- The shell script to generate the graph is dependent on bash. It is Posix compliant (and specific).
+
