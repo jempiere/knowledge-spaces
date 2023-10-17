@@ -1,0 +1,26 @@
+digraph G {
+    label="Pokemon Knowledge Space"
+
+	graph [layout=dot rankdir=BT]
+
+    // Domain Q = {a b c d e}
+    // a: identify a given pokemon's biome
+    // b: identify a given pokemon's weaknesses/strengths
+    // c: use item
+    // d: win a battle
+    // e: catch a pokemon
+
+    0 [label=<&#8709;>]
+    Q [label=<&#x1D444;>]
+
+    0 -> a
+    0 -> c
+	a -> ac[label="a"]
+	c -> ac[label="c"]
+    a -> ab[label="b"]
+    ab -> abc[label="c"]
+    ac -> abc[label="b"]
+    abc -> abcd[label="d"]
+    abcd -> abcde[label="e"]
+    abcde -> Q
+}

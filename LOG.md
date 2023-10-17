@@ -2,6 +2,12 @@
 
 ## Ren Quinn, Thomas Keate, Jayson Bunnell
 
+### 10/17
+
+- Finish terms, decide to move on, working with what we have
+- build pokemon knowledge space
+- goal now is to start implementing a basic quiz based on this space
+
 ### 10/10
 
 Solidify terms from aleks paper (see terms.md)
