@@ -2,6 +2,12 @@
 
 ## Ren Quinn, Thomas Keate, Jayson Bunnell
 
+### 10/24
+
+- Look at pages 320(ish) in Query Alternative paper
+- Learn about Positive relations and Negative relations and how they correlate to the
+  dependency-style graphs that are used for knowledge theory
+- Goal: Understand the P/N *inferences* from the paper. This will save us many permutations of QUERYs
 ### 10/17
 
 - Finish terms, decide to move on, working with what we have
