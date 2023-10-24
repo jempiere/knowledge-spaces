@@ -1,0 +1,11 @@
+#!/bin/bash
+
+function generate_graph()
+{
+  #depends on graphviz
+  dot -Tpng ./knowledge_space.gv > ./graph_visual.png
+  # on gnome, it's xdg-open I believe -- Jayson
+  open ./graph_visual.png
+}
+
+generate_graph
